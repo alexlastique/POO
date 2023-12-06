@@ -20,6 +20,11 @@ public class Main {
         // System.out.println(player.getPointsDeVie()+" "+gobelin.getPointsDeVie());
         // epee.VerrifierCasser();
 
+        Joueur joueur = new Joueur("toto", 15, 14, inventaire);
+        Menu menu = new Menu();
+        menu.afficherMenuPrincipal(joueur);
+
+
 
     }
 }
