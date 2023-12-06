@@ -2,7 +2,7 @@ package model;
 
 import org.w3c.dom.Text;
 
-public class Objet {
+public abstract class Objet {
     public String nom;
     private String description;
 
