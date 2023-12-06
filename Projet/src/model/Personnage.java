@@ -10,8 +10,8 @@ public class Personnage {
         this.pointsDeVie = pointsDeVie;
         this.force = force;
     }
-    public void attaquer(){
-        System.out.println(this.nom + " attaque");
+    public void attaquer(Ennemi cible){
+        System.out.println(this.nom + " attaque "+cible.nom);
     }
     public void defendre(){
         System.out.println(this.nom + "defend");
@@ -25,5 +25,8 @@ public class Personnage {
 
     public void pertPointDeVie(int nbr){
         this.pointsDeVie-=nbr;
+    }
+    public void gainPointDeVie(int nbr){
+        this.pointsDeVie+=nbr;
     }
 }
