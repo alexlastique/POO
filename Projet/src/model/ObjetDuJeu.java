@@ -1,6 +1,5 @@
 package model;
 
-import org.w3c.dom.Text;
 
 public class Objet {
     public String nom;
