@@ -1,4 +1,7 @@
 package model;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.*;
 
 public class Menu {
@@ -36,16 +39,18 @@ public class Menu {
                     potion potionVie = new potion("vie", "potion qui redonne des hp");
                     potion potionForce = new potion("force", "potion qui donne de la force");
                     potion potionMana = new potion("mana", "potion qui donne du mana");
-                    int achat = joueur.removeGold(50);
+                    int achat = joueur.getGold();
                     System.out.println("Que voulez-vous acheter entre:");
-                    System.out.println("1. Potion de vie");
-                    System.out.println("2. Potion de force");
-                    System.out.println("3. Potion de mana");
-                    System.out.println("4. Retour");
+                    System.out.println("1. Potion de vie (50 G)");
+                    System.out.println("2. Potion de force (50 G)");
+                    System.out.println("3. Potion de mana (50 G)");
+                    System.out.println("4. Liberter (1000 G)");
+                    System.out.println("5. Retour");
                     int choixItem = scanner.nextInt();
                     switch (choixItem) {
                         case 1:
-                            if (achat!=0){
+                            if (achat>=50){
+                                joueur.removeGold(50);
                                 System.out.println("Le joueur perd "+achat+" G");
                                 joueur.getInventaire().add(potionVie);
                             }
@@ -54,7 +59,8 @@ public class Menu {
                             }
                             break;
                         case 2:
-                            if (achat!=0){
+                            if (achat>=50){
+                                joueur.removeGold(50);
                                 System.out.println("Le joueur perd "+achat+" G");
                                 joueur.getInventaire().add(potionForce);
                             }
@@ -63,7 +69,8 @@ public class Menu {
                             }
                             break;
                         case 3:
-                            if (achat!=0){
+                            if (achat>=50){
+                                joueur.removeGold(50);
                                 System.out.println("Le joueur perd "+achat+" G");
                                 joueur.getInventaire().add(potionMana);
                             }
@@ -72,6 +79,33 @@ public class Menu {
                             }
                             break;
                         case 4:
+                            for (int i = 0; i<50; i++){
+                                System.out.println();
+                            }
+                            try {
+                                joueur.removeGold(1000);
+                                File fichierSauvegarde = new File("PlayerSave");
+                                FileWriter fileWriter = new FileWriter(fichierSauvegarde);
+                                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+                                ArrayList<String> inventaire =new ArrayList<>();
+                                for (int i=0;i<joueur.getInventaire().size();i++){
+                                    inventaire.add(joueur.getInventaire().get(i).nom);
+                                }
+
+                                bufferedWriter.write(joueur.getNom()+"\n");
+                                bufferedWriter.write(joueur.getGold()+"\n");
+                                bufferedWriter.write(inventaire+"\n");
+                                bufferedWriter.write(joueur.getForce()+"\n");
+                                bufferedWriter.write(joueur.getPointsDeVie()+"\n");
+
+                                bufferedWriter.close();
+
+                                System.out.println("Merci d'avoir joué !");
+                                System.exit(0);
+                            }catch (Exception e){
+                                System.out.println("Erreur:" + e);
+                            }
+                        case 5:
                             break;
                         default:
                             System.out.println("Choix invalide. Veuillez choisir 1, 2 , 3 ou 4.");
@@ -88,9 +122,28 @@ public class Menu {
                     for (int i = 0; i<50; i++){
                         System.out.println();
                     }
-                    // Quittez le jeu
-                    System.out.println("Merci d'avoir joué !");
-                    System.exit(0);
+                    try {
+                        File fichierSauvegarde = new File("PlayerSave");
+                        FileWriter fileWriter = new FileWriter(fichierSauvegarde);
+                        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+                        ArrayList<String> inventaire =new ArrayList<>();
+                        for (int i=0;i<joueur.getInventaire().size();i++){
+                            inventaire.add(joueur.getInventaire().get(i).nom);
+                        }
+
+                        bufferedWriter.write(joueur.getNom()+"\n");
+                        bufferedWriter.write(joueur.getGold()+"\n");
+                        bufferedWriter.write(inventaire+"\n");
+                        bufferedWriter.write(joueur.getForce()+"\n");
+                        bufferedWriter.write(joueur.getPointsDeVie()+"\n");
+
+                        bufferedWriter.close();
+
+                        System.out.println("Merci d'avoir joué !");
+                        System.exit(0);
+                    }catch (Exception e){
+                        System.out.println("Erreur:" + e);
+                    }
                 default:
                     System.out.println("Choix invalide. Veuillez choisir une option valide.");
             }

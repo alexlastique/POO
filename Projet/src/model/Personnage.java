@@ -8,13 +8,10 @@ public class Personnage {
     private int pointsDeVie;
     private int force;
 
-    private int forceDepart;
-
     public Personnage(String nom, int pointsDeVie, int force) {
         this.nom = nom;
         this.pointsDeVie = pointsDeVie;
         this.force = force;
-        this.forceDepart = force;
     }
 
     public void attaquer(Ennemi cible, int typeDeCoup, Joueur joueur) {

@@ -79,10 +79,11 @@ public class Joueur extends Personnage {
 
     public int removeGold(int nbr) {
         // Assurez-vous que le joueur a suffisamment d'or avant de retirer
-        if (nbr > 0 && nbr <= gold) {
-            gold -= nbr;
+        if (nbr > 0 && nbr <= this.gold) {
+            this.gold -= nbr;
             return nbr;
         } else {
+            this.gold=0;
             return 0;
         }
     }
