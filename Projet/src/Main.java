@@ -15,16 +15,20 @@ public class Main {
 
         // Créez un joueur avec des points de vie et de force initiaux
         Joueur joueur = new Joueur(nomJoueur, 100, 6, new ArrayList<potion>());
-        potion potion = new potion("vie", "potion qui redonne des hp");
+        potion potionVie = new potion("vie", "potion qui redonne des hp");
+        potion potionForce = new potion("force", "potion qui donne de la force");
+        potion potionMana = new potion("mana", "potion qui donne du mana");
+        joueur.addInventaire(potionForce);
 
         // Liste des monstres disponibles
-        List<Ennemi> monstres = new ArrayList<>(); // Déplacez la déclaration ici
-        monstres.add(new Ennemi("Demon", 50, 8, "demon", new Arme("Épée démoniaque", "Une épée maléfique", 10, "rare", 10)));
-        monstres.add(new Ennemi("Gobelin", 25, 5, "Gobelin", new Arme("Dague de voleur", "une petite dague", 6, "commun", 7)));
-        monstres.add(new Ennemi("Orc", 35, 8, "Orcs", new Arme("massue de fer", "massue tres résistante", 7, "epique", 1)));
+        List<Ennemi> monstres = new ArrayList<>();
+        monstres.add(new Ennemi("Slime", 10, 2, "Slime"));
+        monstres.add(new Ennemi("Demon", 50, 10, "Demon"));
+        monstres.add(new Ennemi("Gobelin", 25, 5, "Gobelin"));
+        monstres.add(new Ennemi("Orc", 35, 8, "Orcs"));
 
         Menu menu = new Menu();
-        potion.interagire(joueur);
+        //potionVie.interagire(joueur);
         // Afficher le menu principal avant le combat
         menu.afficherMenuPrincipal(joueur, monstres, random);
 

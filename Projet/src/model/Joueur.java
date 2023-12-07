@@ -1,6 +1,8 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class Joueur extends Personnage {
     private ArrayList<potion> inventaire = new ArrayList<>();
@@ -23,7 +25,13 @@ public class Joueur extends Personnage {
 
         while (this.getPointsDeVie() > 0 && ennemi.getPointsDeVie() > 0) {
             // Tour du joueur
-            this.attaquer(ennemi);
+
+            Random typeDeCoup = new Random();
+
+            // Génération d'un nombre aléatoire entre 0 et 2
+            int nombreAleatoire = typeDeCoup.nextInt(3);
+
+            this.attaquer(ennemi,nombreAleatoire+1,this);
             if (ennemi.getPointsDeVie() <= 0) {
                 break; // Si l'ennemi est vaincu, sortir de la boucle
             }
@@ -50,7 +58,11 @@ public class Joueur extends Personnage {
     }
 
     public void afficherInventaire() {
-        System.out.println("Inventaire du joueur : " + this.inventaire);
+        System.out.println("Inventaire du joueur : ");
+        int tailleInventaire = inventaire.size();
+        for (int i=0;i<tailleInventaire;i++){
+            System.out.println(inventaire.get(i).nom);
+        }
     }
 
     public String getNom() {

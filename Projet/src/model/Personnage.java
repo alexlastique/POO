@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Personnage {
     public String nom;
     private int pointsDeVie;
-    int force;
+    private int force;
 
     private int forceDepart;
 
@@ -16,27 +16,72 @@ public class Personnage {
         this.forceDepart = force;
     }
 
-    public void attaquer(Ennemi cible) {
-        // Le joueur peut choisir d'attaquer ou de défendre
+    public void attaquer(Ennemi cible, int typeDeCoup, Joueur joueur) {
+        // Le joueur peut choisir le type d'attaque
         Scanner scanner = new Scanner(System.in);
-        System.out.println("1. Attaquer");
-        System.out.println("2. Défendre");
+        System.out.println("1. Coup vertical");
+        System.out.println("2. Coup horizontal");
+        System.out.println("3. Coup d'estoc");
         int choix = scanner.nextInt();
 
         switch (choix) {
             case 1:
-                // Attaquer
-                int degatsInfliges = this.force; // Vous pouvez ajuster cela selon la logique du jeu
-                cible.pertPointDeVie(degatsInfliges);
-                System.out.println(this.nom + " attaque " + cible.nom + " et inflige " + degatsInfliges + " points de dégâts.");
-                break;
+                if (typeDeCoup==2){
+                    // Attaquer
+                    int degatsInfliges = this.force;
+                    cible.pertPointDeVie(degatsInfliges);
+                    System.out.println(this.nom + " attaque " + cible.nom + " , l'ennemie perd " + degatsInfliges + " PV.");
+                    System.out.println("Points de vie de l'ennemi : " + cible.getPointsDeVie());
+                    break;
+
+                } else if (typeDeCoup==1) {
+                    System.out.println("Les coup s'entrechoque");
+                    break;
+                }
+                else {
+                    System.out.println(cible.nom + " part " + this.nom + " avec faciliter, "+ this.nom+" perd " + cible.getForce() + " PV.");
+                    cible.actionAutoGeree(joueur);
+                    System.out.println("Points de vie du joueur : " + this.getPointsDeVie());
+                    break;
+                }
             case 2:
-                // Défendre
-                this.defendre();
-                System.out.println(this.nom + " se défend.");
-                break;
+                if (typeDeCoup==3){
+                    // Attaquer
+                    int degatsInfliges = this.force;
+                    cible.pertPointDeVie(degatsInfliges);
+                    System.out.println(this.nom + " attaque " + cible.nom + " , l'ennemie perd " + degatsInfliges + " PV.");
+                    System.out.println("Points de vie de l'ennemi : " + cible.getPointsDeVie());
+                    break;
+                } else if (typeDeCoup==2) {
+                    System.out.println("Les coup s'entrechoque");
+                    break;
+                }
+                else {
+                    System.out.println(cible.nom + " part " + this.nom + " avec faciliter, "+ this.nom+" perd " + cible.getForce() + " PV.");
+                    cible.actionAutoGeree(joueur);
+                    System.out.println("Points de vie du joueur : " + this.getPointsDeVie());
+                    break;
+                }
+            case 3:
+                if (typeDeCoup==1){
+                    // Attaquer
+                    int degatsInfliges = this.force;
+                    cible.pertPointDeVie(degatsInfliges);
+                    System.out.println(this.nom + " attaque " + cible.nom + " , l'ennemie perd " + degatsInfliges + " PV.");
+                    System.out.println("Points de vie de l'ennemi : " + cible.getPointsDeVie());
+                    break;
+                } else if (typeDeCoup==3) {
+                    System.out.println("Les coup s'entrechoque");
+                    break;
+                }
+                else {
+                    System.out.println(cible.nom + " part " + this.nom + " avec faciliter, "+ this.nom+" perd " + cible.getForce() + " PV.");
+                    cible.actionAutoGeree(joueur);
+                    System.out.println("Points de vie du joueur : " + this.getPointsDeVie());
+                    break;
+                }
             default:
-                System.out.println("Choix invalide. Veuillez choisir 1 ou 2.");
+                System.out.println("Choix invalide. Veuillez choisir 1, 2 ou 3.");
         }
     }
 
