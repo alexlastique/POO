@@ -35,9 +35,6 @@ public class Joueur extends Personnage {
             if (ennemi.getPointsDeVie() <= 0) {
                 break; // Si l'ennemi est vaincu, sortir de la boucle
             }
-
-            // Tour de l'ennemi
-            ennemi.actionAutoGeree(this);
         }
 
         if (this.getPointsDeVie() <= 0) {

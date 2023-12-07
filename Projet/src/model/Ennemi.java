@@ -16,7 +16,6 @@ public class Ennemi extends Personnage {
 
     public void actionAutoGeree(Joueur joueur) {
         joueur.pertPointDeVie(this.getForce());
-        System.out.println(joueur.nom + " a perdu " + this.getForce() + " PV");
         System.out.println("Points de vie du joueur : " + joueur.getPointsDeVie());
     }
 }

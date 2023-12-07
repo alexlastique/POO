@@ -18,6 +18,8 @@ public class Main {
         potion potionVie = new potion("vie", "potion qui redonne des hp");
         potion potionForce = new potion("force", "potion qui donne de la force");
         potion potionMana = new potion("mana", "potion qui donne du mana");
+        joueur.addInventaire(potionVie);
+        joueur.addInventaire(potionVie);
         joueur.addInventaire(potionForce);
 
         // Liste des monstres disponibles

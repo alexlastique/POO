@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Personnage {
@@ -22,6 +23,7 @@ public class Personnage {
         System.out.println("1. Coup vertical");
         System.out.println("2. Coup horizontal");
         System.out.println("3. Coup d'estoc");
+        System.out.println("4. Accéder au sac");
         int choix = scanner.nextInt();
 
         switch (choix) {
@@ -41,7 +43,6 @@ public class Personnage {
                 else {
                     System.out.println(cible.nom + " part " + this.nom + " avec faciliter, "+ this.nom+" perd " + cible.getForce() + " PV.");
                     cible.actionAutoGeree(joueur);
-                    System.out.println("Points de vie du joueur : " + this.getPointsDeVie());
                     break;
                 }
             case 2:
@@ -59,7 +60,6 @@ public class Personnage {
                 else {
                     System.out.println(cible.nom + " part " + this.nom + " avec faciliter, "+ this.nom+" perd " + cible.getForce() + " PV.");
                     cible.actionAutoGeree(joueur);
-                    System.out.println("Points de vie du joueur : " + this.getPointsDeVie());
                     break;
                 }
             case 3:
@@ -77,9 +77,70 @@ public class Personnage {
                 else {
                     System.out.println(cible.nom + " part " + this.nom + " avec faciliter, "+ this.nom+" perd " + cible.getForce() + " PV.");
                     cible.actionAutoGeree(joueur);
-                    System.out.println("Points de vie du joueur : " + this.getPointsDeVie());
                     break;
                 }
+            case 4:
+                joueur.afficherInventaire();
+                int inventaireSize = joueur.getInventaire().size();
+                System.out.println("que voulez-vous utiliser entre:");
+                System.out.println("1. Potion de vie");
+                System.out.println("2. Potion de force");
+                System.out.println("3. Potion de mana");
+                System.out.println("4. Retour");
+                int choixItem = scanner.nextInt();
+                int potionIndex =-1;
+                switch (choixItem) {
+                    case 1:
+                        for (int i = 0;i<inventaireSize;i++){
+                            if (Objects.equals(joueur.getInventaire().get(i).nom, "vie")){
+                                potionIndex = i;
+                                break;
+                            }
+                        }
+                        if (potionIndex!=-1){
+                            joueur.getInventaire().get(potionIndex).interagire(joueur);
+                            joueur.getInventaire().remove(potionIndex);
+                        }
+                        else {
+                            System.out.println("Vous n'avez pas d'exemplaire de cette potion");
+                        }
+                        break;
+                    case 2:
+                        for (int i = 0;i<inventaireSize;i++){
+                            if (Objects.equals(joueur.getInventaire().get(i).nom, "force")){
+                                potionIndex = i;
+                                break;
+                            }
+                        }
+                        if (potionIndex!=-1){
+                            joueur.getInventaire().get(potionIndex).interagire(joueur);
+                            joueur.getInventaire().remove(potionIndex);
+                        }
+                        else {
+                            System.out.println("Vous n'avez pas d'exemplaire de cette potion");
+                        }
+                        break;
+                    case 3:
+                        for (int i = 0;i<=inventaireSize;i++){
+                            if (Objects.equals(joueur.getInventaire().get(i).nom, "mana")){
+                                potionIndex = i;
+                                break;
+                            }
+                        }
+                        if (potionIndex!=-1){
+                            joueur.getInventaire().get(potionIndex).interagire(joueur);
+                            joueur.getInventaire().remove(potionIndex);
+                        }
+                        else {
+                            System.out.println("Vous n'avez pas d'exemplaire de cette potion");
+                        }
+                        break;
+                    case 4:
+                        break;
+                    default:
+                        System.out.println("Choix invalide. Veuillez choisir 1, 2 , 3 ou 4.");
+                }
+                break;
             default:
                 System.out.println("Choix invalide. Veuillez choisir 1, 2 ou 3.");
         }

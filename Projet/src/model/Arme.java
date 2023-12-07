@@ -24,7 +24,6 @@ public class Arme extends ObjetDuJeu implements interactuable {
 
     @Override
     public void interagire(Personnage personnage) {
-        personnage.pertPointDeVie(this.degat);
-        System.out.println(personnage.nom + " a perdu " + this.degat + " PV");
+        personnage.pertPointDeVie(this.degat* personnage.getForce());
     }
 }
