@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Random;
 
 public class Joueur extends Personnage {
+
+    private int gold;
     private ArrayList<potion> inventaire = new ArrayList<>();
 
     public Joueur(String nom, int pointsDeVie, int force, ArrayList<potion> inventaire) {
@@ -41,8 +43,9 @@ public class Joueur extends Personnage {
             System.out.println("Vous avez perdu le combat contre " + ennemi.getTypeDEnnemi() + ". Retour au menu principal.");
             System.exit(0); // Ajout de cette ligne pour arrêter le jeu en cas de défaite
         } else {
-            System.out.println("Vous avez vaincu " + ennemi.getTypeDEnnemi() + "! Vous gagnez de l'argent.");
-            // Ajoutez ici la logique pour gagner de l'argent après chaque victoire
+            System.out.println("Vous avez vaincu " + ennemi.getTypeDEnnemi() + "! Vous gagnez  l'argent.");
+            this.addGold(ennemi.getGold());
+            System.out.println("Votre argent est de "+this.gold);
         }
 
         // Afficher les points de vie à la fin du combat
@@ -64,5 +67,23 @@ public class Joueur extends Personnage {
 
     public String getNom() {
         return this.nom;
+    }
+
+    public int getGold() {
+        return this.gold;
+    }
+
+    public void addGold(int nbr) {
+        this.gold += nbr;
+    }
+
+    public int removeGold(int nbr) {
+        // Assurez-vous que le joueur a suffisamment d'or avant de retirer
+        if (nbr > 0 && nbr <= gold) {
+            gold -= nbr;
+            return nbr;
+        } else {
+            return 0;
+        }
     }
 }

@@ -24,10 +24,12 @@ public class Main {
 
         // Liste des monstres disponibles
         List<Ennemi> monstres = new ArrayList<>();
-        monstres.add(new Ennemi("Slime", 10, 2, "Slime"));
-        monstres.add(new Ennemi("Demon", 50, 10, "Demon"));
-        monstres.add(new Ennemi("Gobelin", 25, 5, "Gobelin"));
-        monstres.add(new Ennemi("Orc", 35, 8, "Orcs"));
+        monstres.add(new Ennemi("Slime", 10, 2, "Slime", 10));
+        monstres.add(new Ennemi("Demon", 50, 10, "Demon", 50));
+        monstres.add(new Ennemi("Gobelin", 25, 5, "Gobelin", 25));
+        monstres.add(new Ennemi("Orc", 35, 8, "Orcs", 35));
+
+        int prixPotion = 10;
 
         Menu menu = new Menu();
         //potionVie.interagire(joueur);
