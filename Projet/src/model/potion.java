@@ -1,18 +1,23 @@
 package model;
 
-public class potion extends ObjetDuJeu implements interactuable{
+public class potion extends ObjetDuJeu implements interactuable {
     public potion(String nom, String description) {
         super(nom, description);
     }
 
     @Override
     public void interagire(Personnage personnage) {
-        personnage.gainPointDeVie(3);
-        System.out.println(personnage.nom+" boit "+this.nom);
+        System.out.println(personnage.nom+" boit une potion de "+this.nom);
+        if (this.nom == "vie"){
+            personnage.gainPointDeVie(3);
+        } else if (this.nom == "force") {
+            personnage.gainForce(3);
+        }
     }
+
     @Override
-    public void utiliser(){
-        System.out.println(this.nom+" est utiliser");
+    public void utiliser() {
+        System.out.println(this.nom + " est utilisée");
     }
 
     @Override

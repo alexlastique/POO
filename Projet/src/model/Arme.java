@@ -1,33 +1,20 @@
 package model;
 
-public class Arme extends ObjetDuJeu implements interactuable{
-    private int degat;
+public class Arme extends ObjetDuJeu implements interactuable {
+    private float degat;
     private String rareter;
-    private int durabiliter;
 
-    public Arme(String nom, String description,int degat,String rareter,int durabiliter) {
+    public Arme(String nom, String description, float degat, String rareter) {
         super(nom, description);
-        this.degat=degat;
-        this.rareter=rareter;
-        this.durabiliter=durabiliter;
+        this.degat = degat;
+        this.rareter = rareter;
     }
 
 
-    public void VerrifierCasser(){
-        if (this.durabiliter<=0){
-            System.out.println(this.nom + " a casser");
-        }
-        else {
-            System.out.println(this.nom + " pas casser");
-        }
-    }
-    public void pertDurabiliter(){
-        this.durabiliter-=1;
-    }
 
     @Override
     public void utiliser() {
-        System.out.println(this.nom+" est utiliser");
+        System.out.println(this.nom + " est utilisée");
     }
 
     @Override
@@ -38,7 +25,6 @@ public class Arme extends ObjetDuJeu implements interactuable{
     @Override
     public void interagire(Personnage personnage) {
         personnage.pertPointDeVie(this.degat);
-        this.durabiliter-=1;
-        System.out.println(personnage.nom+" a perdu "+this.degat+" PV");
+        System.out.println(personnage.nom + " a perdu " + this.degat + " PV");
     }
 }

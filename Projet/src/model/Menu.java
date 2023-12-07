@@ -1,5 +1,7 @@
 package model;
-
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Menu {
@@ -9,55 +11,38 @@ public class Menu {
         this.scanner = new Scanner(System.in);
     }
 
-    public void afficherMenuPrincipal(Joueur joueur) {
-        System.out.println("1. Créer un personnage");
-        System.out.println("2. Acheter des objets");
-        System.out.println("3. Quitter");
+    public void afficherMenuPrincipal(Joueur joueur, List<Ennemi> monstres, Random random) {
+        while (true) {
+            System.out.println("\n=== Menu Principal ===");
+            System.out.println("1. Combattre un ennemi");
+            System.out.println("2. Acheter un objet");
+            System.out.println("3. Afficher l'inventaire");
+            System.out.println("4. Quitter");
 
-        int choix = obtenirChoixUtilisateur();
+            System.out.println("Choisissez une option : ");
+            int choix = scanner.nextInt();
+            scanner.nextLine(); // Consomme le caractère de fin de ligne
 
-        switch (choix) {
-            case 1:
-                creerPersonnage(joueur);
-                break;
-            case 2:
-                // Logique pour acheter des objets
-                break;
-            case 3:
-                System.out.println("Merci d'avoir joué. Au revoir !");
-                System.exit(0);
-                break;
-            default:
-                System.out.println("Choix invalide. Veuillez sélectionner une option valide.");
-                afficherMenuPrincipal(joueur);
+            switch (choix) {
+                case 1:
+                    // Choisissez un ennemi aléatoire
+                    Ennemi ennemi = monstres.get(random.nextInt(monstres.size()));
+                    joueur.combattre(ennemi);
+                    break;
+                case 2:
+                    // Implémentez la logique pour acheter un objet
+                    break;
+                case 3:
+                    // Affichez l'inventaire du joueur
+                    joueur.afficherInventaire();
+                    break;
+                case 4:
+                    // Quittez le jeu
+                    System.out.println("Merci d'avoir joué !");
+                    System.exit(0);
+                default:
+                    System.out.println("Choix invalide. Veuillez choisir une option valide.");
+            }
         }
-    }
-
-    public void creerPersonnage(Joueur joueur) {
-        System.out.println("Création d'un nouveau personnage :");
-
-        System.out.print("Nom du personnage : ");
-        String nom = scanner.next();
-
-        System.out.print("Points de vie du personnage : ");
-        int pointsDeVie = scanner.nextInt();
-
-        System.out.print("Force du personnage : ");
-        int force = scanner.nextInt();
-
-        Personnage nouveauPersonnage = new Personnage(nom, pointsDeVie, force);
-        joueur.addInventaire(nouveauPersonnage.toString());
-
-        System.out.println("Personnage créé avec succès !");
-    }
-
-
-    private int obtenirChoixUtilisateur() {
-        System.out.print("Veuillez choisir une option : ");
-        while (!scanner.hasNextInt()) {
-            System.out.println("Entrée invalide. Veuillez saisir un nombre.");
-            scanner.next();
-        }
-        return scanner.nextInt();
     }
 }

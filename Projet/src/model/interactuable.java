@@ -1,5 +1,5 @@
 package model;
 
-public interface interactuable {
+interface interactuable {
     void interagire(Personnage personnage);
 }

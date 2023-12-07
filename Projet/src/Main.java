@@ -1,30 +1,42 @@
 import model.*;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<String> inventaire=new ArrayList<>();
-        inventaire.add("potion");
-        Ennemi gobelin =new Ennemi("gobelin",5,2,"bipede");
-        Joueur player = new Joueur("test 1",10,5,inventaire);
-        potion potion=new potion("potion de vie","redonne 3 point de vie");
-        Arme epee=new Arme("Master Sword","épée du chevalier link",4,"Légendaire",1);
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
 
-        // potion.interagire(player);
-        // potion.utiliser();
-        // System.out.println(player.getPointsDeVie()+" "+gobelin.getPointsDeVie());
-        // System.out.println(epee.getDescription());
-        // epee.VerrifierCasser();
-        // epee.interagire(gobelin);
-        // System.out.println(player.getPointsDeVie()+" "+gobelin.getPointsDeVie());
-        // epee.VerrifierCasser();
+        System.out.println("Entrez votre nom : ");
+        String nomJoueur = scanner.nextLine();
 
-        Joueur joueur = new Joueur("toto", 15, 14, inventaire);
+        // Créez un joueur avec des points de vie et de force initiaux
+        Joueur joueur = new Joueur(nomJoueur, 100, 6, new ArrayList<potion>());
+        potion potion = new potion("vie", "potion qui redonne des hp");
+
+        // Liste des monstres disponibles
+        List<Ennemi> monstres = new ArrayList<>(); // Déplacez la déclaration ici
+        monstres.add(new Ennemi("Demon", 50, 8, "demon", new Arme("Épée démoniaque", "Une épée maléfique", 10, "rare", 10)));
+        monstres.add(new Ennemi("Gobelin", 25, 5, "Gobelin", new Arme("Dague de voleur", "une petite dague", 6, "commun", 7)));
+        monstres.add(new Ennemi("Orc", 35, 8, "Orcs", new Arme("massue de fer", "massue tres résistante", 7, "epique", 1)));
+
         Menu menu = new Menu();
-        menu.afficherMenuPrincipal(joueur);
+        potion.interagire(joueur);
+        // Afficher le menu principal avant le combat
+        menu.afficherMenuPrincipal(joueur, monstres, random);
 
+        Ennemi ennemi = monstres.get(random.nextInt(monstres.size()));
 
+        joueur.combattre(ennemi);
+        // Affichez le résultat du combat
+        System.out.println("Résultat du combat : ");
+        System.out.println("Points de vie du joueur : " + joueur.getPointsDeVie());
+        System.out.println("Points de vie de l'ennemi : " + ennemi.getPointsDeVie());
 
+        // Ne retournez pas au menu principal dans ce cas, car vous sortez du jeu après le combat
+        System.out.println("Merci d'avoir joué !");
     }
 }
