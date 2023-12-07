@@ -10,9 +10,6 @@ public class Menu {
 
     public void afficherMenuPrincipal(Joueur joueur, List<Ennemi> monstres, Random random) {
         while (true) {
-            for (int i = 0; i<50; i++){
-                System.out.println();
-            }
             System.out.println("\n=== Menu Principal ===        "+joueur.getGold()+"G");
             System.out.println("1. Combattre un ennemi");
             System.out.println("2. Acheter un objet");
@@ -48,9 +45,6 @@ public class Menu {
                     int choixItem = scanner.nextInt();
                     switch (choixItem) {
                         case 1:
-                            for (int i = 0; i<50; i++){
-                                System.out.println();
-                            }
                             if (achat!=0){
                                 System.out.println("Le joueur perd "+achat+" G");
                                 joueur.getInventaire().add(potionVie);
@@ -60,9 +54,6 @@ public class Menu {
                             }
                             break;
                         case 2:
-                            for (int i = 0; i<50; i++){
-                                System.out.println();
-                            }
                             if (achat!=0){
                                 System.out.println("Le joueur perd "+achat+" G");
                                 joueur.getInventaire().add(potionForce);
@@ -72,9 +63,6 @@ public class Menu {
                             }
                             break;
                         case 3:
-                            for (int i = 0; i<50; i++){
-                                System.out.println();
-                            }
                             if (achat!=0){
                                 System.out.println("Le joueur perd "+achat+" G");
                                 joueur.getInventaire().add(potionMana);
@@ -84,9 +72,6 @@ public class Menu {
                             }
                             break;
                         case 4:
-                            for (int i = 0; i<50; i++){
-                                System.out.println();
-                            }
                             break;
                         default:
                             System.out.println("Choix invalide. Veuillez choisir 1, 2 , 3 ou 4.");
