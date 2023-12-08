@@ -22,16 +22,16 @@ public class Main {
             potion potionForce = new potion("force", "potion qui donne de la force");
             potion potionMana = new potion("mana", "potion qui donne du mana");
 
-            System.out.println("1. Nouvelle Partit");
-            System.out.println("2. Reprendre");
+        System.out.println("1. Nouvelle Partie");
+        System.out.println("2. Reprendre");
 
-            System.out.println("Choisissez une option : ");
-            int choixSauvegarde = scanner.nextInt();
-            scanner.nextLine();
-            switch (choixSauvegarde) {
-                case 1:
-                    System.out.println("Entrez votre nom : ");
-                    String nomJoueur = scanner.nextLine();
+        System.out.println("Choisissez une option : ");
+        int choixSauvegarde = scanner.nextInt();
+        scanner.nextLine();
+        switch (choixSauvegarde) {
+            case 1:
+                System.out.println("Entrer votre nom : ");
+                String nomJoueur = scanner.nextLine();
 
                     // Créez un joueur avec des points de vie et de force initiaux
                     Joueur joueur = new Joueur(nomJoueur, 100, 6, new ArrayList<potion>());

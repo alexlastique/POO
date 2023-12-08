@@ -43,9 +43,9 @@ public class Joueur extends Personnage {
             System.out.println("Vous avez perdu le combat contre " + ennemi.getTypeDEnnemi() + ". Retour au menu principal.");
             System.exit(0); // Ajout de cette ligne pour arrêter le jeu en cas de défaite
         } else {
-            System.out.println("Vous avez vaincu " + ennemi.getTypeDEnnemi() + "! Vous gagnez  l'argent.");
             this.addGold(ennemi.getGold());
-            System.out.println("Votre argent est de "+this.gold);
+            System.out.println("Vous avez vaincu " + ennemi.getTypeDEnnemi() + "! Vous gagnez " + this.gold + "G");
+            System.out.println("Votre solde est désormais de "+this.gold + "G");
         }
 
         // Afficher les points de vie à la fin du combat
