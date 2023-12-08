@@ -82,28 +82,33 @@ public class Menu {
                             for (int i = 0; i<50; i++){
                                 System.out.println();
                             }
-                            try {
-                                joueur.removeGold(1000);
-                                File fichierSauvegarde = new File("PlayerSave");
-                                FileWriter fileWriter = new FileWriter(fichierSauvegarde);
-                                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-                                ArrayList<String> inventaire =new ArrayList<>();
-                                for (int i=0;i<joueur.getInventaire().size();i++){
-                                    inventaire.add(joueur.getInventaire().get(i).nom);
+                            if (achat>=1000) {
+                                try {
+                                    joueur.removeGold(1000);
+                                    File fichierSauvegarde = new File("PlayerSave");
+                                    FileWriter fileWriter = new FileWriter(fichierSauvegarde);
+                                    BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+                                    ArrayList<String> inventaire = new ArrayList<>();
+                                    for (int i = 0; i < joueur.getInventaire().size(); i++) {
+                                        inventaire.add(joueur.getInventaire().get(i).nom);
+                                    }
+
+                                    bufferedWriter.write(joueur.getNom() + "\n");
+                                    bufferedWriter.write(joueur.getGold() + "\n");
+                                    bufferedWriter.write(inventaire + "\n");
+                                    bufferedWriter.write(joueur.getForce() + "\n");
+                                    bufferedWriter.write(joueur.getPointsDeVie() + "\n");
+
+                                    bufferedWriter.close();
+
+                                    System.out.println("Merci d'avoir joué !");
+                                    System.exit(0);
+                                } catch (Exception e) {
+                                    System.out.println("Erreur:" + e);
                                 }
-
-                                bufferedWriter.write(joueur.getNom()+"\n");
-                                bufferedWriter.write(joueur.getGold()+"\n");
-                                bufferedWriter.write(inventaire+"\n");
-                                bufferedWriter.write(joueur.getForce()+"\n");
-                                bufferedWriter.write(joueur.getPointsDeVie()+"\n");
-
-                                bufferedWriter.close();
-
-                                System.out.println("Merci d'avoir joué !");
-                                System.exit(0);
-                            }catch (Exception e){
-                                System.out.println("Erreur:" + e);
+                            }
+                            else {
+                                System.out.println("Le joueur n'a pas assez de G.");
                             }
                         case 5:
                             break;
